@@ -1,0 +1,98 @@
+{
+  "project": {
+    "projectSettingsVersion": "3.0.0",
+    "currentBuildConfiguration": null,
+    "projectFiles": {},
+    "projectDirectories": {}
+  },
+  "editorTab": {
+    "currentEditorMode": 0
+  },
+  "iot-tab": {
+    "fileStatus": {
+      ".jshintrc": {
+        "previousModTime": 1471021591140,
+        "modified": 1471021591140,
+        "seen": true,
+        "name": ".jshintrc"
+      },
+      "AlarmClock.xdk": {
+        "previousModTime": 1471021592485,
+        "modified": 1471021592485,
+        "seen": true,
+        "name": "AlarmClock.xdk"
+      },
+      "AlarmClock.xdke": {
+        "previousModTime": 1471027934735,
+        "modified": 1471027934735,
+        "seen": true,
+        "name": "AlarmClock.xdke"
+      },
+      "config.json": {
+        "previousModTime": 1471027729509,
+        "modified": 1471027729509,
+        "seen": true,
+        "name": "config.json"
+      },
+      "datastore.js": {
+        "previousModTime": 1471021591227,
+        "modified": 1471021591227,
+        "seen": true,
+        "name": "datastore.js"
+      },
+      "icon.png": {
+        "previousModTime": 1471021591144,
+        "modified": 1471021591144,
+        "seen": true,
+        "name": "icon.png"
+      },
+      "index.html": {
+        "previousModTime": 1471021591145,
+        "modified": 1471021591145,
+        "seen": true,
+        "name": "index.html"
+      },
+      "index.js": {
+        "previousModTime": 1471028304986,
+        "modified": 1471028304986,
+        "seen": true,
+        "name": "index.js"
+      },
+      "LICENSES.md": {
+        "previousModTime": 1471021591145,
+        "modified": 1471021591145,
+        "seen": true,
+        "name": "LICENSES.md"
+      },
+      "mqtt.js": {
+        "previousModTime": 1471021591145,
+        "modified": 1471021591145,
+        "seen": true,
+        "name": "mqtt.js"
+      },
+      "package.json": {
+        "previousModTime": 1471021591145,
+        "modified": 1471021591145,
+        "seen": true,
+        "name": "package.json"
+      },
+      "README.md": {
+        "previousModTime": 1471021591145,
+        "modified": 1471021591145,
+        "seen": true,
+        "name": "README.md"
+      },
+      "xdk/project-info.json": {
+        "previousModTime": 1471021592185,
+        "modified": 1471021592185,
+        "seen": true,
+        "name": "xdk/project-info.json"
+      }
+    },
+    "boardFileStatus": {
+      "index.js": {
+        "previousModTime": 1471028314045
+      }
+    }
+  }
+}
