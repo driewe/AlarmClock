@@ -23,14 +23,14 @@
         "name": "AlarmClock.xdk"
       },
       "AlarmClock.xdke": {
-        "previousModTime": 1471027934735,
-        "modified": 1471027934735,
+        "previousModTime": 1471141803026,
+        "modified": 1471141803026,
         "seen": true,
         "name": "AlarmClock.xdke"
       },
       "config.json": {
-        "previousModTime": 1471027729509,
-        "modified": 1471027729509,
+        "previousModTime": 1471141799333,
+        "modified": 1471141799333,
         "seen": true,
         "name": "config.json"
       },
@@ -53,8 +53,8 @@
         "name": "index.html"
       },
       "index.js": {
-        "previousModTime": 1471028304986,
-        "modified": 1471028304986,
+        "previousModTime": 1471141876798,
+        "modified": 1471141876798,
         "seen": true,
         "name": "index.js"
       },
@@ -87,11 +87,26 @@
         "modified": 1471021592185,
         "seen": true,
         "name": "xdk/project-info.json"
+      },
+      ".gitattributes": {
+        "previousModTime": 1471090323618,
+        "modified": 1471090323618,
+        "seen": true,
+        "name": ".gitattributes"
+      },
+      ".gitignore": {
+        "previousModTime": 1471090591828,
+        "modified": 1471090591828,
+        "seen": true,
+        "name": ".gitignore"
       }
     },
     "boardFileStatus": {
+      "config.json": {
+        "previousModTime": 1471141882945
+      },
       "index.js": {
-        "previousModTime": 1471028314045
+        "previousModTime": 1471141882945
       }
     }
   }

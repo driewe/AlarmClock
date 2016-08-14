@@ -96,16 +96,18 @@ function stopBuzzing() {
 function setupEvents() {
   var prev = { button: 0 };
 
-  setInterval(function() {
-    var pressed = button.value();
+    setInterval(function() {
+        var pressed = button.value();
 
-    events.emit("rotary", rotary.abs_value());
+        events.emit("rotary", rotary.abs_value());
 
-    if (pressed && !prev.button) { events.emit("button-press"); }
-    if (!pressed && prev.button) { events.emit("button-release"); }
+        if (pressed && !prev.button) { events.emit("button-press"); getWeather();}
+        if (!pressed && prev.button) { events.emit("button-release"); }
 
-    prev.button = pressed;
-  }, 100);
+        prev.button = pressed;
+        
+      
+    }, 100);
 }
 
 // Call the remote Weather Underground API to check the weather conditions
@@ -117,7 +119,6 @@ function getWeather() {
 
     url += config.WEATHER_API_KEY;
     url += "/conditions/q/TX/" + config.LOCATION + ".json";
-
     function display(err, res) {
         if (err) { return console.error("unable to get weather data", res.text); }
         var conditions = res.body.current_observation.weather;
@@ -126,7 +127,6 @@ function getWeather() {
     }
     
     request.get(url).end(display);
-    console.log("Requesting Weather: ", url);
 }
 
 // Display and then store record in the remote datastore and/or mqtt server
@@ -141,29 +141,29 @@ function notify(duration) {
 
 // Called to start the alarm when the time has come to get up
 function startAlarm() {
-  var tick = true;
+    var tick = true;
 
-  color("red");
-  buzz();
-  getWeather();
+    color("red");
+    buzz();
+    //getWeather();
 
-  var interval = setInterval(function() {
-    color(tick ? "white" : "red");
-    if (tick) { stopBuzzing(); } else { buzz(); }
-    tick = !tick;
-  }, 250);
+    var interval = setInterval(function() {
+        color(tick ? "white" : "red");
+        if (tick) { stopBuzzing(); } else { buzz(); }
+        tick = !tick;
+    }, 250);
 
-  events.once("button-press", function() {
-    clearInterval(interval);
+    events.once("button-press", function() {
+        clearInterval(interval);
 
-    // notify how long alarm took to be silenced
-    notify(moment().diff(alarm).toString());
+        // notify how long alarm took to be silenced
+        notify(moment().diff(alarm).toString());
 
-    alarm = alarm.add(1, "day");
+        alarm = alarm.add(1, "day");
 
-    color("white");
-    stopBuzzing();
-  });
+        color("white");
+        stopBuzzing();
+    });
 }
 
 // Start the clock timer, then check every 50ms to see if is time to
@@ -200,50 +200,50 @@ function adjustBrightness(value) {
 // Starts the built-in web server that serves up the web page
 // used to set the alarm time
 function server() {
-  var app = require("express")();
+    var app = require("express")();
 
-  // Serve up the main web page used to configure the alarm time
-  function index(res) {
-    function serve(err, data) {
-      if (err) { return console.error(err); }
-      res.send(data);
-    }
+    // Serve up the main web page used to configure the alarm time
+    function index(res) {
+        function serve(err, data) {
+            if (err) { return console.error(err); }
+            res.send(data);
+        }
     fs.readFile(path.join(__dirname, "index.html"), {encoding: "utf-8"}, serve);
-  }
-
-  // Set new alarm time submitted by the web page using HTTP GET
-  function get(req, res) {
-    var params = req.query,
-        time = moment();
-
-    time.hour(+params.hour);
-    time.minute(+params.minute);
-    time.second(+params.second);
-
-    if (time.isBefore(moment())) {
-      time.add(1, "day");
     }
 
-    alarm = time;
+    // Set new alarm time submitted by the web page using HTTP GET
+    function get(req, res) {
+        var params = req.query,
+            time = moment();
 
-    index(res);
-  }
+        time.hour(+params.hour);
+        time.minute(+params.minute);
+        time.second(+params.second);
 
-  // Return the JSON data for the currently set alarm time
-  function json(req, res) {
-    if (!alarm) { return res.json({ hour: 0, minute: 0, second: 0 }); }
+        if (time.isBefore(moment())) {
+            time.add(1, "day");
+        }
 
-    res.json({
-      hour: alarm.hour() || 0,
-      minute: alarm.minute() || 0,
-      second: alarm.second() || 0
-    });
-  }
+        alarm = time;
 
-  app.get("/", get);
-  app.get("/alarm.json", json);
+        index(res);
+    }
 
-  app.listen(3000);
+    // Return the JSON data for the currently set alarm time
+    function json(req, res) {
+        if (!alarm) { return res.json({ hour: 0, minute: 0, second: 0 }); }
+
+        res.json({
+        hour: alarm.hour() || 0,
+        minute: alarm.minute() || 0,
+        second: alarm.second() || 0
+        });
+    }
+
+    app.get("/", get);
+    app.get("/alarm.json", json);
+
+    app.listen(3000);
 }
 
 // The main function makes sure the alarm buzzer is turned off,
@@ -253,12 +253,11 @@ function server() {
 // Lastly, the main function adjusts the brightness of the RGB LCD
 // when the rotary knob is turned.
 function main() {
-  stopBuzzing();
-  setupEvents();
-  startClock();
-  server();
-
-  events.on("rotary", adjustBrightness);
+    stopBuzzing();
+    setupEvents();
+    startClock();
+    server();
+    events.on("rotary", adjustBrightness);
 }
 
 main();
